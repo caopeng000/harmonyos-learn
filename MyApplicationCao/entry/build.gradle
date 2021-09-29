@@ -1,0 +1,34 @@
+apply plugin: 'com.huawei.ohos.hap'
+apply plugin: 'com.huawei.ohos.decctest'
+//For instructions on signature configuration, see https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ide_debug_device-0000001053822404#section1112183053510
+ohos {
+    compileSdkVersion 5
+    defaultConfig {
+        compatibleSdkVersion 4
+    }
+    compileOptions {
+        annotationEnabled true
+    }
+    buildTypes {
+        release {
+            proguardOpt {
+                proguardEnabled false
+                rulesFiles 'proguard-rules.pro'
+            }
+        }
+    }
+    
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+    testImplementation 'junit:junit:4.13'
+    ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.200'
+    implementation 'com.huawei.middleplatform:ohos-metadata-annotation:1.0.0.0'
+    implementation 'com.huawei.middleplatform:ohos-metadata-binding:1.0.0.0'
+    implementation 'io.openharmony.tpc.thirdlib:glide:1.1.2'
+    annotationProcessor 'com.huawei.middleplatform:ohos-metadata-processor:1.0.0.0'
+}
+decc {
+    supportType = ['html','xml']
+}
